@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Tareas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Mis Tareas</h1>
+    <a href="{% url 'crear_tarea' %}" class="btn btn-primary">Nueva Tarea</a>
+</div>
+
+{% if tareas %}
+    <ul class="list-group">
+        {% for tarea in tareas %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <strong>{{ tarea.titulo }}</strong>
+                    <p class="mb-0">{{ tarea.descripcion }}</p>
+                    <small class="text-muted">Fecha límite: {{ tarea.fecha_limite }}</small>
+                </div>
+                <div>
+                    {% if tarea.completada %}
+                        <span class="badge bg-success me-2">Completada</span>
+                    {% else %}
+                        <span class="badge bg-warning text-dark me-2">Pendiente</span>
+                    {% endif %}
+                    <a href="{% url 'editar_tarea' tarea.id %}" class="btn btn-sm btn-info me-2">Editar</a>
+                    <a href="{% url 'eliminar_tarea' tarea.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p class="alert alert-info">No tienes tareas. <a href="{% url 'crear_tarea' %}">¡Crea una ahora!</a></p>
+{% endif %}
+{% endblock %}

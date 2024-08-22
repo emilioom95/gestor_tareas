@@ -1,0 +1,17 @@
+form input, form textarea, form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ form.instance.id|yesno:"Editar Tarea,Crear Tarea" }}{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        {{ form.instance.id|yesno:"Editar Tarea,Crear Tarea" }}
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.titulo.label_tag }}
+                {{ form.titulo }}
+            </div>
+            <div class="mb-3">
+                {{ form.descripcion.label_tag }}
+                {{ form.descripcion }}
+            </div>
+            <div class="mb-3">
+                {{ form.fecha_limite.label_tag }}
+                {{ form.fecha_limite }}
+            </div>
+            <div class="form-check mb-3">
+                {{ form.completada }}
+                {{ form.completada.label_tag }}
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a href="{% url 'lista_tareas' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
